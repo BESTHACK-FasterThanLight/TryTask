@@ -1,11 +1,6 @@
 package ru.ftl.besthack.repositories.auth
 
 import android.content.SharedPreferences
-import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
-import ru.ftl.besthack.data.auth.UserApi
-import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.data.db.AppDatabase
 
 /**

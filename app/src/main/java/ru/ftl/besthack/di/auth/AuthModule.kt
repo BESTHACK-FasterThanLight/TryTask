@@ -21,8 +21,8 @@ import ru.ftl.besthack.repositories.auth.IAuthRepository
 class AuthModule {
     @Provides
     @AuthScope
-    fun provideRepository(sharedPreferences: SharedPreferences, retrofit: Retrofit, appDatabase: AppDatabase): IAuthRepository {
-        return AuthRepository(sharedPreferences, appDatabase, retrofit)
+    fun provideRepository(sharedPreferences: SharedPreferences, appDatabase: AppDatabase): IAuthRepository {
+        return AuthRepository(sharedPreferences, appDatabase)
     }
 
 

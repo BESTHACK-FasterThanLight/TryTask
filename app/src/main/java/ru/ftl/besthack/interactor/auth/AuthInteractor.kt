@@ -1,8 +1,5 @@
 package ru.ftl.besthack.interactor.auth
 
-import io.reactivex.Single
-import ru.ftl.besthack.data.auth.UserApi
-import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.repositories.auth.IAuthRepository
 
 /**

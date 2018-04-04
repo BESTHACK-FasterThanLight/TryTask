@@ -6,7 +6,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_users.*
 import ru.ftl.besthack.R
-import ru.ftl.besthack.data.auth.UserApi
+import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.utils.toast
 import ru.ftl.besthack.view.menu.presenter.UserMenuPresenter
 
@@ -28,7 +28,7 @@ class UserMenuActivity : MvpAppCompatActivity(), IUserMenuActivity {
         updateButton.setOnRefreshListener { presenter.loadList() }
     }
 
-    override fun setList(users: List<UserApi>, login: String) {
+    override fun setList(users: List<UserModel>, login: String) {
         list.adapter = UserModelAdapter(users, login)
         updateButton.isRefreshing = false
     }

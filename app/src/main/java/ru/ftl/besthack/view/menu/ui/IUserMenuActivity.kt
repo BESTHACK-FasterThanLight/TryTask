@@ -1,7 +1,7 @@
 package ru.ftl.besthack.view.menu.ui
 
 import com.arellomobile.mvp.MvpView
-import ru.ftl.besthack.data.auth.UserApi
+import ru.ftl.besthack.data.auth.UserModel
 
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>
@@ -10,6 +10,6 @@ import ru.ftl.besthack.data.auth.UserApi
  */
 
 interface IUserMenuActivity : MvpView {
-    fun setList(users: List<UserApi>, login: String)
+    fun setList(users: List<UserModel>, login: String)
     fun onError()
 }
