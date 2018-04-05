@@ -1,4 +1,4 @@
-package ru.ftl.besthack.interactor.auth
+package ru.ftl.besthack.repositories.users
 
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>
@@ -6,7 +6,6 @@ package ru.ftl.besthack.interactor.auth
  * @date 06.03.18
  */
 
-interface IAuthInteractor {
+interface IUsersRepository {
     fun getToken(): String?
-
 }

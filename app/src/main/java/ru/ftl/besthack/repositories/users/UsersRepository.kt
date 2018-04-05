@@ -1,4 +1,4 @@
-package ru.ftl.besthack.repositories.auth
+package ru.ftl.besthack.repositories.users
 
 import android.content.SharedPreferences
 import ru.ftl.besthack.data.db.AppDatabase
@@ -9,8 +9,8 @@ import ru.ftl.besthack.data.db.AppDatabase
  * @date 06.03.18
  */
 
-class AuthRepository(private val sharedPreferences: SharedPreferences,
-                     appDatabase: AppDatabase) : IAuthRepository {
+class UsersRepository(private val sharedPreferences: SharedPreferences,
+                      appDatabase: AppDatabase) : IUsersRepository {
     val userDao = appDatabase.getUserDao()
 
     override fun getToken(): String? {

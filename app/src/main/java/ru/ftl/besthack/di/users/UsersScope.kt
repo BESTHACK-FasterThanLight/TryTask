@@ -1,4 +1,4 @@
-package ru.ftl.besthack.di.auth
+package ru.ftl.besthack.di.users
 
 import javax.inject.Scope
 
@@ -10,4 +10,4 @@ import javax.inject.Scope
 
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
-annotation class AuthScope
+annotation class UsersScope

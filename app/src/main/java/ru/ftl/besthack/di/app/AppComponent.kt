@@ -1,8 +1,8 @@
 package ru.ftl.besthack.di.app
 
 import dagger.Component
-import ru.ftl.besthack.di.auth.AuthComponent
-import ru.ftl.besthack.di.auth.AuthModule
+import ru.ftl.besthack.di.users.UsersComponent
+import ru.ftl.besthack.di.users.UsersModule
 import javax.inject.Singleton
 
 /**
@@ -13,5 +13,5 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 @Singleton
 interface AppComponent {
-    fun plus(module: AuthModule): AuthComponent
+    fun plus(module: UsersModule): UsersComponent
 }

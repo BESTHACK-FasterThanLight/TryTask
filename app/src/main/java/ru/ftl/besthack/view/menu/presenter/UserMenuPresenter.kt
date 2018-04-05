@@ -2,13 +2,11 @@ package ru.ftl.besthack.view.menu.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ru.ftl.besthack.App
-import ru.ftl.besthack.di.auth.AuthModule
-import ru.ftl.besthack.interactor.auth.IAuthInteractor
+import ru.ftl.besthack.di.users.UsersModule
+import ru.ftl.besthack.interactor.users.IUsersInteractor
 import ru.ftl.besthack.view.menu.ui.IUserMenuActivity
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -20,11 +18,11 @@ import javax.inject.Inject
 @InjectViewState
 class UserMenuPresenter : MvpPresenter<IUserMenuActivity>() {
     @Inject
-    lateinit var authInteractor: IAuthInteractor
+    lateinit var usersInteractor: IUsersInteractor
     private val disposable = CompositeDisposable()
 
     init {
-        App.appComponent.plus(AuthModule()).inject(this)
+        App.appComponent.plus(UsersModule()).inject(this)
     }
 
     override fun onFirstViewAttach() {
@@ -33,10 +31,10 @@ class UserMenuPresenter : MvpPresenter<IUserMenuActivity>() {
     }
 
     fun loadList() {
-        /*disposable.addAll(authInteractor.get()
+        /*disposable.addAll(usersInteractor.get()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    viewState.setList(it, authInteractor.getToken() ?: "")
+                    viewState.setList(it, usersInteractor.getToken() ?: "")
                 }, {
                     Timber.e(it)
                     viewState.onError()

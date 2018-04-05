@@ -1,6 +1,5 @@
-package ru.ftl.besthack.di.auth
+package ru.ftl.besthack.di.users
 
-import android.support.v7.view.menu.MenuPresenter
 import dagger.Subcomponent
 import ru.ftl.besthack.view.menu.presenter.UserMenuPresenter
 
@@ -10,8 +9,8 @@ import ru.ftl.besthack.view.menu.presenter.UserMenuPresenter
  * @date 06.03.18
  */
 
-@Subcomponent(modules = [AuthModule::class])
-@AuthScope
-interface AuthComponent {
+@Subcomponent(modules = [UsersModule::class])
+@UsersScope
+interface UsersComponent {
     fun inject(presenter: UserMenuPresenter)
 }
