@@ -10,6 +10,7 @@ import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.utils.toast
 import ru.ftl.besthack.view.menu.presenter.UserMenuPresenter
 
+
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>
  * @project BestHack
@@ -19,6 +20,7 @@ import ru.ftl.besthack.view.menu.presenter.UserMenuPresenter
 class UserMenuActivity : MvpAppCompatActivity(), IUserMenuActivity {
     @InjectPresenter
     lateinit var presenter: UserMenuPresenter
+    private var adapter: UserModelAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +30,15 @@ class UserMenuActivity : MvpAppCompatActivity(), IUserMenuActivity {
         updateButton.setOnRefreshListener { presenter.loadList() }
     }
 
-    override fun setList(users: List<UserModel>, login: String) {
-        list.adapter = UserModelAdapter(users, login)
+    override fun setList(users: List<UserModel>) {
         updateButton.isRefreshing = false
+        if (adapter == null) {
+            adapter = UserModelAdapter(users)
+            list.adapter = adapter
+            return
+        }
+
+        adapter!!.setList(users)
     }
 
     override fun onError() {

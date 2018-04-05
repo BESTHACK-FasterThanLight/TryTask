@@ -10,6 +10,6 @@ import ru.ftl.besthack.data.auth.UserModel
  */
 
 interface IUserMenuActivity : MvpView {
-    fun setList(users: List<UserModel>, login: String)
+    fun setList(users: List<UserModel>)
     fun onError()
 }

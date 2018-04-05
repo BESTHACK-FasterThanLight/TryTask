@@ -1,13 +1,15 @@
 package ru.ftl.besthack.di.users
 
-import android.content.SharedPreferences
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ru.ftl.besthack.data.db.AppDatabase
-import ru.ftl.besthack.interactor.users.UsersInteractor
 import ru.ftl.besthack.interactor.users.IUsersInteractor
-import ru.ftl.besthack.repositories.users.UsersRepository
+import ru.ftl.besthack.interactor.users.UsersInteractor
+import ru.ftl.besthack.repositories.image.IImageRepository
+import ru.ftl.besthack.repositories.image.ImageRepository
 import ru.ftl.besthack.repositories.users.IUsersRepository
+import ru.ftl.besthack.repositories.users.UsersRepository
 
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>
@@ -20,14 +22,20 @@ import ru.ftl.besthack.repositories.users.IUsersRepository
 class UsersModule {
     @Provides
     @UsersScope
-    fun provideRepository(sharedPreferences: SharedPreferences, appDatabase: AppDatabase): IUsersRepository {
-        return UsersRepository(sharedPreferences, appDatabase)
+    fun provideRepository(appDatabase: AppDatabase): IUsersRepository {
+        return UsersRepository(appDatabase)
     }
 
 
     @Provides
     @UsersScope
-    fun provideInteractor(usersRepository: IUsersRepository): IUsersInteractor {
-        return UsersInteractor(usersRepository)
+    fun provideInteractor(usersRepository: IUsersRepository, imageRepository: IImageRepository): IUsersInteractor {
+        return UsersInteractor(usersRepository, imageRepository)
+    }
+
+    @Provides
+    @UsersScope
+    fun provideImageRepo(context: Context): IImageRepository {
+        return ImageRepository(context)
     }
 }

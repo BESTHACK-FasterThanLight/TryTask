@@ -1,6 +1,11 @@
 package ru.ftl.besthack.repositories.users
 
 import android.content.SharedPreferences
+import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
+import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.data.db.AppDatabase
 
 /**
@@ -9,19 +14,19 @@ import ru.ftl.besthack.data.db.AppDatabase
  * @date 06.03.18
  */
 
-class UsersRepository(private val sharedPreferences: SharedPreferences,
-                      appDatabase: AppDatabase) : IUsersRepository {
+class UsersRepository(appDatabase: AppDatabase) : IUsersRepository {
     val userDao = appDatabase.getUserDao()
 
-    override fun getToken(): String? {
-        val token = sharedPreferences.getString("auth_token", "")
-
-        return if (token.isNullOrEmpty()) {
-            null
-        } else token
+    override fun getUsers(): Flowable<List<UserModel>> {
+        return userDao.getUsers()
+                .subscribeOn(Schedulers.io())
     }
 
-    private fun putToken(token: String) {
-        sharedPreferences.edit().putString("auth_token", token).apply()
+    override fun saveUser(userModel: UserModel): Single<UserModel> {
+        return Single.fromCallable {
+            userModel.id = userDao.insert(userModel)
+            return@fromCallable userModel
+        }.subscribeOn(Schedulers.io())
     }
+
 }

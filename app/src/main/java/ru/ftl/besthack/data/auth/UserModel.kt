@@ -11,15 +11,15 @@ import android.os.Parcelable
  * @date 06.03.18
  */
 
-@Entity
-class UserModel(var name: String,
-                var surname: String,
-                var middlename: String,
-                var imageUrl: String,
-                var group: String,
-                var about: String,
+@Entity(tableName = UserModel.TABLE_NAME)
+class UserModel(var name: String = "",
+                var surname: String = "",
+                var middlename: String = "",
+                var imageUrl: String = "",
+                var group: String = "",
+                var about: String = "",
                 @PrimaryKey(autoGenerate = true)
-                var id: Int) : Parcelable {
+                var id: Long = 0) : Parcelable {
     constructor() : this("", "", "", "", "", "", 0)
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -28,8 +28,7 @@ class UserModel(var name: String,
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readInt()) {
-    }
+            parcel.readLong())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
@@ -38,7 +37,7 @@ class UserModel(var name: String,
         parcel.writeString(imageUrl)
         parcel.writeString(group)
         parcel.writeString(about)
-        parcel.writeInt(id)
+        parcel.writeLong(id)
     }
 
     override fun describeContents(): Int {
@@ -46,6 +45,8 @@ class UserModel(var name: String,
     }
 
     companion object CREATOR : Parcelable.Creator<UserModel> {
+        const val TABLE_NAME = "user"
+
         override fun createFromParcel(parcel: Parcel): UserModel {
             return UserModel(parcel)
         }
