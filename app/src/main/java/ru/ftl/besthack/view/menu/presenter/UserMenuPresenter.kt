@@ -9,7 +9,7 @@ import ru.ftl.besthack.App
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.di.users.UsersModule
 import ru.ftl.besthack.interactor.users.IUsersInteractor
-import ru.ftl.besthack.view.menu.ui.IUserMenuActivity
+import ru.ftl.besthack.view.menu.ui.IUserMenuFragment
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,18 +20,13 @@ import javax.inject.Inject
  */
 
 @InjectViewState
-class UserMenuPresenter : MvpPresenter<IUserMenuActivity>() {
+class UserMenuPresenter : MvpPresenter<IUserMenuFragment>() {
     @Inject
     lateinit var usersInteractor: IUsersInteractor
     private val disposable = CompositeDisposable()
 
     init {
         App.appComponent.plus(UsersModule()).inject(this)
-    }
-
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-        loadList()
     }
 
     fun loadList() {
