@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ru.ftl.besthack.R;
+import ru.ftl.besthack.data.auth.UserModel;
 
 /**
  * Created by john on 05.04.18.
  */
 
 public class ProfileFragment extends Fragment {
+
+    private UserModel userModel;
 
     @Nullable
     @Override
@@ -27,4 +30,7 @@ public class ProfileFragment extends Fragment {
         return ProfileView;
     }
 
+    public UserModel getUser(){
+        return userModel;
+    };
 }

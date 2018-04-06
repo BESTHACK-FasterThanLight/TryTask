@@ -19,6 +19,9 @@ import java.io.File
  */
 
 class UserModelAdapter(private var users: List<UserModel>) : RecyclerView.Adapter<UserModelAdapter.ViewHolder>() {
+
+    private var onUserClickListener: OnUserClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false))
     }
@@ -49,6 +52,10 @@ class UserModelAdapter(private var users: List<UserModel>) : RecyclerView.Adapte
     fun setList(users: List<UserModel>){
         this.users = users
         notifyDataSetChanged()
+    }
+
+    fun setOnUserClickListener(onUserClickListener: OnUserClickListener) {
+        this.onUserClickListener = onUserClickListener
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
