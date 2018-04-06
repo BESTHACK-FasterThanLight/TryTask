@@ -2,14 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center"
-    android:layout_height="match_parent">
+    >
+
+    <ImageView
+        android:id="@+id/UserImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="150dp"
+        android:maxHeight="150dp"
+        android:scaleType="centerInside"/>
+
+    <TextView
+        android:id="@+id/UserSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Буевич"
+        android:textColor="#000"/>
+
+    <Space
+        android:layout_weight="10dp"
+        android:layout_height="10dp" />
 
     <TextView
         android:id="@+id/UserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="lol" />
+        android:text="Евгений"
+        android:textColor="#000"/>
+
+    <Space
+        android:layout_weight="10dp"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/UserMiddlename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Валерьевич"
+        android:textColor="#000"/>
+
+    <Space
+        android:layout_weight="10dp"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/UserGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Группа: ИУ7-63"
+        android:textColor="#000"/>
+
+    <Space
+        android:layout_weight="10dp"
+        android:layout_height="15dp" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/UserAbout"
+        android:layout_width="wrap_content"
+        android:maxWidth="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#000"
+        android:text="О себе: Цитаты и статусы о себе — это как раз те фразы, которые характеризуют и описывают вас. Люди бывают самые разные, и цитаты о себе каждый человек должен выбирать, разумеется, сам. Мы стараемся вымещать самые различные высказывания, чтобы каждый смог выбрать наиболее подходящее. Статусы о себе можно использовать в контакте, чтобы дать возможность своим друзьям и всем остальным понять вас лучше. Выбирайте."
+    </ScrollView>
+
 
 </LinearLayout>
