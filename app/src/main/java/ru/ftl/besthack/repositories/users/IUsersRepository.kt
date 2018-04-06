@@ -16,4 +16,6 @@ import ru.ftl.besthack.data.auth.UserModel
 interface IUsersRepository {
     fun getUsers(): Flowable<List<UserModel>>
     fun saveUser(userModel: UserModel): Single<UserModel>
+    fun saveDraft(userModel: UserModel): Single<UserModel>
+    fun getDraft(): Single<UserModel>
 }

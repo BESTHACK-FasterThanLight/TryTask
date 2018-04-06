@@ -1,6 +1,8 @@
 package ru.ftl.besthack.di.users
 
 import android.content.Context
+import android.content.SharedPreferences
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import ru.ftl.besthack.data.db.AppDatabase
@@ -22,8 +24,8 @@ import ru.ftl.besthack.repositories.users.UsersRepository
 class UsersModule {
     @Provides
     @UsersScope
-    fun provideRepository(appDatabase: AppDatabase): IUsersRepository {
-        return UsersRepository(appDatabase)
+    fun provideRepository(appDatabase: AppDatabase, sharedPreferences: SharedPreferences, gson: Gson): IUsersRepository {
+        return UsersRepository(appDatabase, sharedPreferences, gson)
     }
 
 

@@ -40,4 +40,16 @@ class UsersInteractor(private val usersRepository: IUsersRepository, private val
                 .flatMap { usersRepository.saveUser(userModel) } // А теперь сохраняем в БД уже с путем к картинкам
     }
 
+    override fun saveDraft(userModel: UserModel, bitmap: Bitmap?): Completable {
+        userModel.id = -1
+        var fileSingle = Single.just(userModel)
+        if (bitmap != null) {
+            fileSingle = saveUserImage(userModel, bitmap)
+        }
+        return fileSingle.flatMap { usersRepository.saveDraft(it) }.toCompletable()
+    }
+
+    override fun getDraft(): Single<UserModel> {
+        return usersRepository.getDraft()
+    }
 }
