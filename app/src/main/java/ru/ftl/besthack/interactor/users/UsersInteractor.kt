@@ -48,8 +48,7 @@ class UsersInteractor(private val usersRepository: IUsersRepository, private val
             fileSingle = saveUserImage(userModel, bitmap)
         }
         return fileSingle.flatMap {
-            usersRepository.saveDraft(it)
-            return@flatMap Single.just(it)
+            return@flatMap usersRepository.saveDraft(it)
         }.toCompletable()
     }
 

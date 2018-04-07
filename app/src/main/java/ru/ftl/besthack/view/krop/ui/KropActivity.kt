@@ -10,14 +10,15 @@ import android.view.MenuItem
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.esafirm.imagepicker.features.ImagePicker
-import com.esafirm.imagepicker.features.ReturnMode
-import com.esafirm.imagepicker.model.Image
+import com.mlsdev.rximagepicker.RxImageConverters
+import com.mlsdev.rximagepicker.RxImagePicker
+import com.mlsdev.rximagepicker.Sources
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_krop.*
 import ru.ftl.besthack.R
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.view.krop.presenter.KropPresenter
+import timber.log.Timber
 
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>
@@ -58,25 +59,14 @@ class KropActivity : MvpAppCompatActivity(), IKropView {
     }
 
     private fun openPicker() {
-        ImagePicker.create(this)
-                .returnMode(ReturnMode.ALL)
-                .single()
-                .showCamera(true)
-                .start(REQUEST_IMAGE_CODE)
+        RxImagePicker.with(this)
+                .requestImage(Sources.GALLERY)
+                .flatMap { RxImageConverters.uriToBitmap(baseContext, it) }
+                .subscribe({ presenter.onImageLoad(it) }, Timber::e)
     }
 
     override fun setBitmap(bitmap: Bitmap) {
         krop_view.setBitmap(bitmap)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        var img: Image? = null
-        if (requestCode == REQUEST_IMAGE_CODE && resultCode == Activity.RESULT_OK) {
-            img = ImagePicker.getFirstImageOrNull(data)
-        }
-        presenter.onImageLoad(img)
     }
 
     override fun showLoading(isVisible: Boolean) {

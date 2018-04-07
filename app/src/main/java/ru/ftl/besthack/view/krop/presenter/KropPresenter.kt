@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.esafirm.imagepicker.model.Image
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ru.ftl.besthack.App
@@ -45,18 +44,13 @@ class KropPresenter : MvpPresenter<IKropView>() {
         this.userModel = userModel ?: this.userModel
     }
 
-    fun onImageLoad(img: Image?) {
-        if (img == null) {
-            viewState.finishForResult()
-            return
-        }
-
-        bitmap = BitmapFactory.decodeFile(img.path)
+    fun onImageLoad(bitmap: Bitmap?) {
         if (bitmap == null) {
             viewState.finishForResult()
             return
         }
-        viewState.setBitmap(bitmap!!)
+
+        viewState.setBitmap(bitmap)
     }
 
     fun submit(bitmap: Bitmap?) {
