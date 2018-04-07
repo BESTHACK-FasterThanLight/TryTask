@@ -45,6 +45,7 @@ class AddUserPresenter : MvpPresenter<IAddUserView>() {
             viewState.onError(R.string.edit_error)
             return
         }
+        userModel.id = 0
         viewState.onLoading(true)
         disposable.addAll(interactor.getDraft()
                 .map {
