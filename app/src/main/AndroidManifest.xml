@@ -10,15 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".view.menu.ui.UserMenuActivity">
+        <activity android:name=".view.menu.ui.UserMenuActivity" />
+        <activity android:name=".view.krop.ui.KropActivity" />
+        <activity android:name=".view.profile.ui.ProfileActivity" />
+        <activity
+            android:name=".view.splash.ui.SplashScreenActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.krop.ui.KropActivity" />
-        <activity android:name=".view.profile.ui.ProfileActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

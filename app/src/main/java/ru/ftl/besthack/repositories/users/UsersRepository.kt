@@ -3,8 +3,11 @@ package ru.ftl.besthack.repositories.users
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Retrofit
+import ru.ftl.besthack.data.auth.IUserApi
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.data.db.AppDatabase
 
@@ -14,8 +17,11 @@ import ru.ftl.besthack.data.db.AppDatabase
  * @date 06.03.18
  */
 
-class UsersRepository(appDatabase: AppDatabase, val sharedPreferences: SharedPreferences, val gson: Gson) : IUsersRepository {
+class UsersRepository(appDatabase: AppDatabase,
+                      val sharedPreferences: SharedPreferences, val gson: Gson,
+                      retrofit: Retrofit) : IUsersRepository {
     val userDao = appDatabase.getUserDao()
+    val userApi = retrofit.create(IUserApi::class.java)
 
     override fun getUsers(): Flowable<List<UserModel>> {
         return userDao.getUsers()
@@ -40,5 +46,11 @@ class UsersRepository(appDatabase: AppDatabase, val sharedPreferences: SharedPre
         return Single.fromCallable {
             gson.fromJson(sharedPreferences.getString("draft", ""), UserModel::class.java)
         }.subscribeOn(Schedulers.io())
+    }
+
+    override fun loadServerUsers(): Observable<UserModel> {
+        return userApi.getUsers()
+                .subscribeOn(Schedulers.io())
+                .flatMap { Observable.fromIterable(it) }
     }
 }

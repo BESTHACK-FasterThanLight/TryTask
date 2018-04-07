@@ -2,7 +2,9 @@ package ru.ftl.besthack.repositories.image
 
 import android.content.Context
 import android.graphics.Bitmap
+import com.bumptech.glide.Glide
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import java.io.File
 
@@ -12,7 +14,7 @@ import java.io.File
  * @date 05.04.18
  */
 
-class ImageRepository(context: Context) : IImageRepository {
+class ImageRepository(val context: Context) : IImageRepository {
     val imageFile = File(context.filesDir, "image")
 
     override fun saveImage(bitmap: Bitmap, imagename: String): Single<File> {
@@ -35,4 +37,13 @@ class ImageRepository(context: Context) : IImageRepository {
         }
     }
 
+    override fun loadImageFromServer(url: String): Single<Bitmap> {
+        return Single.fromCallable {
+            Glide.with(context)
+                    .asBitmap()
+                    .load(url)
+                    .submit()
+                    .get()
+        }.subscribeOn(Schedulers.io())
+    }
 }

@@ -37,7 +37,6 @@ class UserMenuPresenter : MvpPresenter<IUserMenuView>() {
                     Timber.e(it)
                     viewState.onError()
                 }))
-        usersInteractor.saveUser(UserModel("test"), null).subscribe()
     }
 
     override fun onDestroy() {

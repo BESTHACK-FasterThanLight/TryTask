@@ -18,4 +18,5 @@ interface IUsersRepository {
     fun saveUser(userModel: UserModel): Single<UserModel>
     fun saveDraft(userModel: UserModel): Single<UserModel>
     fun getDraft(): Single<UserModel>
+    fun loadServerUsers(): Observable<UserModel>
 }

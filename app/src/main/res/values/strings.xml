@@ -3,4 +3,5 @@
     <string name="done">Done</string>
     <string name="group">Группа: %s</string>
     <string name="about">О себе: %s</string>
+    <string name="first_setting">Первичная настройка приложения. Подождите ^_^</string>
 </resources>

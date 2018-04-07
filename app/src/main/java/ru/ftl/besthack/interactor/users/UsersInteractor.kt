@@ -52,4 +52,12 @@ class UsersInteractor(private val usersRepository: IUsersRepository, private val
     override fun getDraft(): Single<UserModel> {
         return usersRepository.getDraft()
     }
+
+    override fun loadAndSaveFirstUser(): Completable {
+        return usersRepository.loadServerUsers()
+                .flatMapSingle { user ->
+                    imageRepository.loadImageFromServer(user.imageUrl).map { user to it }
+                }
+                .flatMapCompletable { saveUser(it.first, it.second) }
+    }
 }

@@ -15,4 +15,5 @@ import java.io.File
 
 interface IImageRepository {
     fun saveImage(bitmap: Bitmap, tryimagename: String): Single<File>
+    fun loadImageFromServer(url: String): Single<Bitmap>
 }

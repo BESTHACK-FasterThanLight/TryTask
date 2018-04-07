@@ -17,4 +17,5 @@ interface IUsersInteractor {
     fun saveUser(userModel: UserModel, bitmap: Bitmap?): Completable
     fun saveDraft(userModel: UserModel, bitmap: Bitmap?): Completable
     fun getDraft(): Single<UserModel>
+    fun loadAndSaveFirstUser(): Completable
 }
