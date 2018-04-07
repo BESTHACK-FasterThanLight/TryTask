@@ -1,6 +1,8 @@
 package ru.ftl.besthack.view.profile.ui
 
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -31,7 +33,13 @@ class ProfileActivity : MvpAppCompatActivity(), IProfileView {
         userName.text = userModel.name
         userMiddlename.text = userModel.middlename
         userSurname.text = userModel.surname
-        userAbout.text = getString(R.string.about, userModel.about)
+        userAbout.text = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Html.fromHtml(getString(R.string.about, userModel.about), Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.fromHtml(getString(R.string.about, userModel.about))
+        }
+        userAbout.movementMethod = LinkMovementMethod.getInstance()
+
         userGroup.text = getString(R.string.group, userModel.group)
         if (userModel.imageUrl.isNotEmpty()) {
             GlideApp.with(this)

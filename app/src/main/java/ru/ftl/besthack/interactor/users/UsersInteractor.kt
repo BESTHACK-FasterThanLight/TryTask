@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import ru.ftl.besthack.BuildConfig
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.repositories.image.IImageRepository
 import ru.ftl.besthack.repositories.users.IUsersRepository
@@ -56,7 +57,7 @@ class UsersInteractor(private val usersRepository: IUsersRepository, private val
     override fun loadAndSaveFirstUser(): Completable {
         return usersRepository.loadServerUsers()
                 .flatMapSingle { user ->
-                    imageRepository.loadImageFromServer(user.imageUrl).map { user to it }
+                    imageRepository.loadImageFromServer("${BuildConfig.STATIC_URL}${user.imageUrl}").map { user to it }
                 }
                 .flatMapCompletable { saveUser(it.first, it.second) }
     }

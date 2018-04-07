@@ -15,7 +15,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/profile"
@@ -24,24 +25,36 @@
                 android:layout_margin="5dp"
                 tools:src="@drawable/ic_action_name" />
 
-            <TextView
-                android:id="@+id/textTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/profile"
-                tools:text="Test" />
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/profile"
+                android:gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="15dp"
-                android:layout_marginStart="3dp"
-                android:layout_toEndOf="@+id/profile"
-                tools:text="Secret" />
+                <TextView
+                    android:id="@+id/textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="24sp"
+                    tools:text="Test" />
+
+                <TextView
+                    android:id="@+id/textDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="20sp"
+                    tools:text="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Не следует, однако забывать, что рамки и место обучения кадров способствует подготовки и реализации новых предложений. Разнообразный и богатый опыт начало повседневной работы по формированию позиции позволяет оценить значение систем массового участия." />
+            </LinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
