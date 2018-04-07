@@ -31,6 +31,7 @@ class ImageRepository(val context: Context) : IImageRepository {
 
     private fun saveBitmapToFile(bitmap: Bitmap, file: File) {
         file.parentFile.mkdirs()
+        file.delete()
         file.createNewFile()
         file.outputStream().use {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)

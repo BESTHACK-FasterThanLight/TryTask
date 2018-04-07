@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.activity_user.*
 import ru.ftl.besthack.R
 import ru.ftl.besthack.data.auth.UserModel
@@ -48,6 +49,8 @@ class AddUserActivity : MvpAppCompatActivity(), IAddUserView {
         if (userModel.imageUrl.isNotEmpty()) {
             GlideApp.with(this)
                     .load(File(userModel.imageUrl))
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .circleCrop()
                     .placeholder(R.drawable.ic_action_name)
                     .error(R.drawable.ic_action_name)
