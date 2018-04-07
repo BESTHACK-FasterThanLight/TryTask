@@ -1,15 +1,13 @@
 package ru.ftl.besthack.view.menu.presenter
 
-import android.graphics.Bitmap
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ru.ftl.besthack.App
-import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.di.users.UsersModule
 import ru.ftl.besthack.interactor.users.IUsersInteractor
-import ru.ftl.besthack.view.menu.ui.IUserMenuFragment
+import ru.ftl.besthack.view.menu.ui.IUserMenuView
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,7 +18,7 @@ import javax.inject.Inject
  */
 
 @InjectViewState
-class UserMenuPresenter : MvpPresenter<IUserMenuFragment>() {
+class UserMenuPresenter : MvpPresenter<IUserMenuView>() {
     @Inject
     lateinit var usersInteractor: IUsersInteractor
     private val disposable = CompositeDisposable()

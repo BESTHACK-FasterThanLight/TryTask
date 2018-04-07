@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/userImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/ic_action_name" />
+
+            <TextView
+                android:id="@+id/userSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:textColor="#000"
+                tools:text="Буевич" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:textColor="#000"
+                tools:text="Евгений" />
+
+
+            <TextView
+                android:id="@+id/userMiddlename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:textColor="#000"
+                tools:text="Валерьевич" />
+
+            <TextView
+                android:id="@+id/userGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                tools:text="Группа: ИУ7-63" />
+
+            <TextView
+                android:id="@+id/userAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:textColor="#000"
+                tools:text="О себе: Цитаты и статусы о себе — это как раз те фразы, которые характеризуют и описывают вас. Люди бывают самые разные, и цитаты о себе каждый человек должен выбирать, разумеется, сам. Мы стараемся вымещать самые различные высказывания, чтобы каждый смог выбрать наиболее подходящее. Статусы о себе можно использовать в контакте, чтобы дать возможность своим друзьям и всем остальным понять вас лучше. Выбирайте." />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

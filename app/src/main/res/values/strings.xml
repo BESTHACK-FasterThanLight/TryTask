@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">BestHack</string>
     <string name="done">Done</string>
+    <string name="group">Группа: %s</string>
+    <string name="about">О себе: %s</string>
 </resources>

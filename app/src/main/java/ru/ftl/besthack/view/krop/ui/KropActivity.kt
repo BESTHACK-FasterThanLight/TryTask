@@ -39,7 +39,7 @@ class KropActivity : MvpAppCompatActivity(), IKropView {
         rxPermissions = RxPermissions(this)
         presenter.loadImage()
 
-        val userModel = savedInstanceState?.getParcelable<UserModel>("user")
+        val userModel = savedInstanceState?.getParcelable<UserModel>(UserModel.EXTRA_NAME)
         presenter.storeUser(UserModel())
     }
 

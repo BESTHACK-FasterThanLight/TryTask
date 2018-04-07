@@ -46,6 +46,7 @@ class UserModel(var name: String = "",
 
     companion object CREATOR : Parcelable.Creator<UserModel> {
         const val TABLE_NAME = "user"
+        const val EXTRA_NAME = "user"
 
         override fun createFromParcel(parcel: Parcel): UserModel {
             return UserModel(parcel)

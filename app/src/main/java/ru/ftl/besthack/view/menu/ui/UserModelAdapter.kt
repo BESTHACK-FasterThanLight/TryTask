@@ -20,7 +20,7 @@ import java.io.File
 
 class UserModelAdapter(private var users: List<UserModel>) : RecyclerView.Adapter<UserModelAdapter.ViewHolder>() {
 
-    private var onUserClickListener: OnUserClickListener? = null
+    private var onUserClickListener: ((user: UserModel) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false))
@@ -33,6 +33,7 @@ class UserModelAdapter(private var users: List<UserModel>) : RecyclerView.Adapte
 
         holder.title.text = "${user.surname} ${user.name} ${user.middlename} "
         holder.description.text = user.about
+        holder.itemView.setOnClickListener { onUserClickListener?.invoke(user) }
 
         if (user.imageUrl.isNotEmpty()) {
             GlideApp.with(holder.profile)
@@ -49,12 +50,12 @@ class UserModelAdapter(private var users: List<UserModel>) : RecyclerView.Adapte
         }
     }
 
-    fun setList(users: List<UserModel>){
+    fun setList(users: List<UserModel>) {
         this.users = users
         notifyDataSetChanged()
     }
 
-    fun setOnUserClickListener(onUserClickListener: OnUserClickListener) {
+    fun setOnUserClickListener(onUserClickListener: (user: UserModel) -> Unit) {
         this.onUserClickListener = onUserClickListener
     }
 

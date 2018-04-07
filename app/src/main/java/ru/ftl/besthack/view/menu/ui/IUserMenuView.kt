@@ -9,7 +9,7 @@ import ru.ftl.besthack.data.auth.UserModel
  * @date 27.03.18
  */
 
-interface IUserMenuFragment : MvpView {
+interface IUserMenuView : MvpView {
     fun setList(users: List<UserModel>)
     fun onError()
 }
