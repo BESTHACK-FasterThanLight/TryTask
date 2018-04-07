@@ -5,6 +5,7 @@ import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ru.ftl.besthack.App
+import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.di.users.UsersModule
 import ru.ftl.besthack.interactor.users.IUsersInteractor
 import ru.ftl.besthack.view.menu.ui.IUserMenuView
@@ -36,6 +37,7 @@ class UserMenuPresenter : MvpPresenter<IUserMenuView>() {
                     Timber.e(it)
                     viewState.onError()
                 }))
+        usersInteractor.saveUser(UserModel("test"), null).subscribe()
     }
 
     override fun onDestroy() {

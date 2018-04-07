@@ -1,5 +1,6 @@
 package ru.ftl.besthack.view.menu.ui
 
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,7 @@ class UserModelAdapter(private var users: List<UserModel>) : RecyclerView.Adapte
 
         holder.title.text = "${user.surname} ${user.name} ${user.middlename} "
         holder.description.text = user.about
-        holder.itemView.setOnClickListener { onUserClickListener?.invoke(user) }
+        holder.cardView.setOnClickListener { onUserClickListener?.invoke(user) }
 
         if (user.imageUrl.isNotEmpty()) {
             GlideApp.with(holder.profile)
@@ -63,5 +64,6 @@ class UserModelAdapter(private var users: List<UserModel>) : RecyclerView.Adapte
         val title = itemView.findViewById<TextView>(R.id.textTitle)!!
         val description = itemView.findViewById<TextView>(R.id.textDescription)!!
         val profile = itemView.findViewById<ImageView>(R.id.profile)!!
+        val cardView = itemView.findViewById<CardView>(R.id.cardview)
     }
 }

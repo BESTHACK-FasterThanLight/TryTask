@@ -23,7 +23,7 @@ class ProfileActivity : MvpAppCompatActivity(), IProfileView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        val userModel = savedInstanceState?.getParcelable<UserModel>(UserModel.EXTRA_NAME)
+        val userModel = intent.getParcelableExtra<UserModel>(UserModel.EXTRA_NAME)
         presenter.loadUser(userModel)
     }
 
