@@ -45,7 +45,10 @@ class UsersInteractor(private val usersRepository: IUsersRepository, private val
         userModel.id = -1
         var fileSingle = Single.just(userModel)
         if (bitmap != null) {
-            fileSingle = saveUserImage(userModel, bitmap)
+            fileSingle = imageRepository.saveImage(bitmap, userModel.id.toString()).map {
+                userModel.imageUrl = it.absolutePath
+                return@map userModel
+            }
         }
         return fileSingle.flatMap {
             return@flatMap usersRepository.saveDraft(it)
