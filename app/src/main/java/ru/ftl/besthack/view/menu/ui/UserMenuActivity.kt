@@ -6,6 +6,11 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import ru.ftl.besthack.R
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.view.menu.UserProfile.ProfileFragment
+import android.support.design.widget.Snackbar
+import android.view.View
+import android.support.design.widget.FloatingActionButton
+
+
 
 
 /**
@@ -16,9 +21,9 @@ import ru.ftl.besthack.view.menu.UserProfile.ProfileFragment
 
 class UserMenuActivity : MvpAppCompatActivity() {
 
-    private val USERMODEL = "user_model"
-
-
+    companion object {
+        @JvmStatic val USERMODEL = "user_model"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_users)
@@ -27,6 +32,12 @@ class UserMenuActivity : MvpAppCompatActivity() {
         if (savedInstanceState?.getSerializable(USERMODEL) != null) {
             openDescription(savedInstanceState.getParcelable(USERMODEL) as UserModel)
         }
+
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
+            createNewUser()
+        }
+
     }
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -35,7 +46,7 @@ class UserMenuActivity : MvpAppCompatActivity() {
         var  profileFragment:  ProfileFragment? = null
 
         if (resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE) {
-             profileFragment = manager.findFragmentById(R.id.container_right) as  ProfileFragment
+             profileFragment = manager.findFragmentById(R.id.container_right) as ProfileFragment
         } else {
             val fragment = manager.findFragmentById(R.id.container)
             if (fragment is  ProfileFragment) {
@@ -86,5 +97,12 @@ class UserMenuActivity : MvpAppCompatActivity() {
             transaction.addToBackStack(null)
         }
         transaction.commit()
+    }
+
+    private fun createNewUser() {
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+        val userCreateFragment = UserCreateFragment()
+
     }
 }
