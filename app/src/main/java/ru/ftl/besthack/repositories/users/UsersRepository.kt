@@ -44,7 +44,8 @@ class UsersRepository(appDatabase: AppDatabase,
 
     override fun getDraft(): Single<UserModel> {
         return Single.fromCallable {
-            gson.fromJson(sharedPreferences.getString("draft", ""), UserModel::class.java)
+            val model = gson.fromJson(sharedPreferences.getString("draft", "{}"), UserModel::class.java)
+            return@fromCallable model
         }.subscribeOn(Schedulers.io())
     }
 

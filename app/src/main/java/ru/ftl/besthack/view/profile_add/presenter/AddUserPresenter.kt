@@ -61,6 +61,7 @@ class AddUserPresenter : MvpPresenter<IAddUserView>() {
                     viewState.onLoading(false)
                     viewState.finishForResult()
                 }, {
+                    Timber.e(it)
                     viewState.onLoading(false)
                 }))
     }
