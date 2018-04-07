@@ -8,6 +8,6 @@ import com.arellomobile.mvp.MvpView
  * @date 07.04.18
  */
 
-interface ISplashView: MvpView {
+interface ISplashView : MvpView {
     fun finishLoad()
 }

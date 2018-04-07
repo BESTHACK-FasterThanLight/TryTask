@@ -1,10 +1,7 @@
 package ru.ftl.besthack.repositories.image
 
 import android.graphics.Bitmap
-import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
-import ru.ftl.besthack.data.auth.UserModel
 import java.io.File
 
 /**

@@ -1,7 +1,5 @@
 package ru.ftl.besthack.repositories.users
 
-import android.graphics.Bitmap
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single

@@ -8,7 +8,6 @@ import ru.ftl.besthack.BuildConfig
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.repositories.image.IImageRepository
 import ru.ftl.besthack.repositories.users.IUsersRepository
-import timber.log.Timber
 
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>

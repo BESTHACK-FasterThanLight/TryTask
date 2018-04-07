@@ -10,4 +10,4 @@ import com.bumptech.glide.module.AppGlideModule
  */
 
 @GlideModule
-open class AppGlide : AppGlideModule(){}
+open class AppGlide : AppGlideModule() {}

@@ -2,7 +2,6 @@ package ru.ftl.besthack.utils
 
 import android.content.Context
 import android.widget.Toast
-import java.util.*
 
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>
