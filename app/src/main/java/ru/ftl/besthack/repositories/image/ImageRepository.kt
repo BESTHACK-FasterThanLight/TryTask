@@ -17,9 +17,9 @@ import java.io.File
 class ImageRepository(val context: Context) : IImageRepository {
     val imageFile = File(context.filesDir, "image")
 
-    override fun saveImage(bitmap: Bitmap, imagename: String): Single<File> {
+    override fun saveImage(bitmap: Bitmap, tryimagename: String): Single<File> {
         return Single.fromCallable {
-            val file = File(imageFile, "$imagename.png")
+            val file = File(imageFile, "$tryimagename.png")
             try {
                 saveBitmapToFile(bitmap, file)
             } catch (e: Exception) {

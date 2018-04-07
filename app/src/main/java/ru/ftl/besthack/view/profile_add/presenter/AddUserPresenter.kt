@@ -1,5 +1,6 @@
 package ru.ftl.besthack.view.profile_add.presenter
 
+import android.graphics.BitmapFactory
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -53,7 +54,7 @@ class AddUserPresenter : MvpPresenter<IAddUserView>() {
                     return@map userModel
                 }
                 .flatMapCompletable {
-                    interactor.saveUser(userModel, null)
+                    interactor.saveUser(userModel, BitmapFactory.decodeFile(userModel.imageUrl))
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
