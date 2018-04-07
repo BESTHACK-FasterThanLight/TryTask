@@ -3,6 +3,7 @@ package ru.ftl.besthack.di.users
 import dagger.Subcomponent
 import ru.ftl.besthack.view.krop.presenter.KropPresenter
 import ru.ftl.besthack.view.menu.presenter.UserMenuPresenter
+import ru.ftl.besthack.view.profile_add.presenter.AddUserPresenter
 import ru.ftl.besthack.view.splash.presenter.SplashPresenter
 
 /**
@@ -17,4 +18,5 @@ interface UsersComponent {
     fun inject(presenter: UserMenuPresenter)
     fun inject(presenter: KropPresenter)
     fun inject(presenter: SplashPresenter)
+    fun inject(presenter: AddUserPresenter)
 }

@@ -8,6 +8,7 @@ import ru.ftl.besthack.BuildConfig
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.repositories.image.IImageRepository
 import ru.ftl.besthack.repositories.users.IUsersRepository
+import timber.log.Timber
 
 /**
  * @author Nikita Kulikov <nikita@kulikof.ru>
@@ -47,7 +48,14 @@ class UsersInteractor(private val usersRepository: IUsersRepository, private val
         if (bitmap != null) {
             fileSingle = saveUserImage(userModel, bitmap)
         }
-        return fileSingle.flatMap { usersRepository.saveDraft(it) }.toCompletable()
+        return fileSingle.flatMap {
+            try {
+                usersRepository.saveDraft(it)
+            } catch (e: Throwable) {
+                val e = e
+            }
+            return@flatMap Single.just(it)
+        }.toCompletable()
     }
 
     override fun getDraft(): Single<UserModel> {

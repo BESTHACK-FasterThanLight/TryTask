@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -16,11 +16,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_marginTop="20dp"
                 android:id="@+id/userImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
                 tools:src="@drawable/ic_action_name" />
 
@@ -67,7 +67,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:textColor="#000"
-                tools:text="О себе: Цитаты и статусы о себе — это как раз те фразы, которые характеризуют и описывают вас. Люди бывают самые разные, и цитаты о себе каждый человек должен выбирать, разумеется, сам. Мы стараемся вымещать самые различные высказывания, чтобы каждый смог выбрать наиболее подходящее. Статусы о себе можно использовать в контакте, чтобы дать возможность своим друзьям и всем остальным понять вас лучше. Выбирайте." />
+                tools:text="О себе: Цита" />
 
         </LinearLayout>
     </ScrollView>

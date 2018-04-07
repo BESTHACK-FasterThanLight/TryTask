@@ -11,6 +11,7 @@ import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.utils.toast
 import ru.ftl.besthack.view.menu.presenter.UserMenuPresenter
 import ru.ftl.besthack.view.profile.ui.ProfileActivity
+import ru.ftl.besthack.view.profile_add.ui.AddUserActivity
 
 /**
  * @author Parpibaev Arthur <a.parpibaev97@gmail.com>
@@ -31,6 +32,7 @@ class UserMenuActivity : MvpAppCompatActivity(), IUserMenuView {
         presenter.loadList()
 
         adapter.setOnUserClickListener({ openDescription(it) })
+        fab.setOnClickListener { startActivity(Intent(this@UserMenuActivity, AddUserActivity::class.java)) }
     }
 
     override fun setList(users: List<UserModel>) {

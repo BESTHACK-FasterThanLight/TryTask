@@ -22,6 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.profile_add.ui.AddUserActivity"
+            android:label="@string/edit_title" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

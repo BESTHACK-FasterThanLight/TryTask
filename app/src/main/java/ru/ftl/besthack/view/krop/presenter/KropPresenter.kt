@@ -6,6 +6,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.esafirm.imagepicker.model.Image
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import ru.ftl.besthack.App
 import ru.ftl.besthack.data.auth.UserModel
 import ru.ftl.besthack.di.users.UsersModule
@@ -26,6 +27,7 @@ class KropPresenter : MvpPresenter<IKropView>() {
     @Inject
     lateinit var userInteractor: IUsersInteractor
     var userModel: UserModel? = null
+    private val disposable = CompositeDisposable()
 
     init {
         App.appComponent.plus(UsersModule()).inject(this)
@@ -45,11 +47,15 @@ class KropPresenter : MvpPresenter<IKropView>() {
 
     fun onImageLoad(img: Image?) {
         if (img == null) {
-            viewState.finish()
+            viewState.finishForResult()
             return
         }
 
         bitmap = BitmapFactory.decodeFile(img.path)
+        if (bitmap == null) {
+            viewState.finishForResult()
+            return
+        }
         viewState.setBitmap(bitmap!!)
     }
 
@@ -59,14 +65,19 @@ class KropPresenter : MvpPresenter<IKropView>() {
         }
         viewState.showLoading(true)
 
-        userInteractor.saveDraft(userModel!!, bitmap)
+        disposable.addAll(userInteractor.saveDraft(userModel!!, bitmap)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     viewState.showLoading(false)
-                    viewState.finish()
+                    viewState.finishForResult()
                 }, {
                     viewState.showLoading(false)
                     Timber.e(it)
-                })
+                }))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.clear()
     }
 }

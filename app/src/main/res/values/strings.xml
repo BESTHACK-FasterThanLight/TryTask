@@ -1,7 +1,19 @@
 <resources>
     <string name="app_name">BestHack</string>
     <string name="done">Done</string>
+    <string name="profile_notfound_name">Нет имени</string>
+    <string name="profile_notfound_surname">Нет фамилии</string>
+    <string name="profile_notfound_middle">Нет отчества</string>
+    <string name="profile_notfound_group">Нет группы</string>
+    <string name="profile_notfound_about">О нем ничего не сказано</string>
     <string name="group">Группа: %s</string>
     <string name="about">О себе: %s</string>
     <string name="first_setting">Первичная настройка приложения. Подождите ^_^</string>
+    <string name="edit_aboutme">О себе...</string>
+    <string name="edit_group">Группа</string>
+    <string name="edit_middlename">Отчество</string>
+    <string name="edit_surname">Фамилия</string>
+    <string name="edit_name">Имя</string>
+    <string name="edit_title">Добавление пользователя</string>
+    <string name="edit_error">Имя не может быть пустым</string>
 </resources>

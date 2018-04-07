@@ -1,5 +1,6 @@
 package ru.ftl.besthack.view.profile.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Html
 import android.text.method.LinkMovementMethod
@@ -29,18 +30,21 @@ class ProfileActivity : MvpAppCompatActivity(), IProfileView {
         presenter.loadUser(userModel)
     }
 
+    @SuppressLint("NewApi")
     override fun setUser(userModel: UserModel) {
-        userName.text = userModel.name
-        userMiddlename.text = userModel.middlename
-        userSurname.text = userModel.surname
-        userAbout.text = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            Html.fromHtml(getString(R.string.about, userModel.about), Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            Html.fromHtml(getString(R.string.about, userModel.about))
+        userName.text = if (userModel.name.isNotEmpty()) userModel.name else getString(R.string.profile_notfound_name)
+        userMiddlename.text = if (userModel.middlename.isNotEmpty()) userModel.middlename else getString(R.string.profile_notfound_middle)
+        userSurname.text = if (userModel.surname.isNotEmpty()) userModel.surname else getString(R.string.profile_notfound_surname)
+        userAbout.text = when {
+            userModel.about.isEmpty() -> getString(R.string.profile_notfound_about)
+            android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N -> Html.fromHtml(getString(R.string.about, userModel.about), Html.FROM_HTML_MODE_LEGACY)
+            else -> Html.fromHtml(getString(R.string.about, userModel.about))
         }
         userAbout.movementMethod = LinkMovementMethod.getInstance()
 
-        userGroup.text = getString(R.string.group, userModel.group)
+        userGroup.text = if (userModel.group.isNotEmpty()) getString(R.string.group, userModel.group) else {
+            getString(R.string.profile_notfound_group)
+        }
         if (userModel.imageUrl.isNotEmpty()) {
             GlideApp.with(this)
                     .load(File(userModel.imageUrl))

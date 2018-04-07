@@ -97,4 +97,8 @@ class KropActivity : MvpAppCompatActivity(), IKropView {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun finishForResult() {
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
 }

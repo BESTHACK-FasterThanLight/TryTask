@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import ru.ftl.besthack.App
 import ru.ftl.besthack.di.users.UsersModule
 import ru.ftl.besthack.interactor.users.IUsersInteractor
@@ -22,6 +23,7 @@ class SplashPresenter : MvpPresenter<ISplashView>() {
     lateinit var interactor: IUsersInteractor
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+    private val disposable = CompositeDisposable()
 
     init {
         App.appComponent.plus(UsersModule()).inject(this)
@@ -32,13 +34,18 @@ class SplashPresenter : MvpPresenter<ISplashView>() {
             viewState.finishLoad()
             return
         }
-        interactor.loadAndSaveFirstUser()
+        disposable.addAll(interactor.loadAndSaveFirstUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     sharedPreferences.edit().putBoolean("firstrun", false).apply()
                     viewState.finishLoad()
                 }, {
                     viewState.finishLoad()
-                })
+                }))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.clear()
     }
 }

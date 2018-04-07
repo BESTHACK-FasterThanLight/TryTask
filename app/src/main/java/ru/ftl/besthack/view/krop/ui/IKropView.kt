@@ -18,7 +18,7 @@ interface IKropView : MvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun requestAndOpenPicker()
 
-    fun finish()
+    fun finishForResult()
     fun setBitmap(bitmap: Bitmap)
     fun showLoading(isVisible: Boolean)
 }
